@@ -1,0 +1,32 @@
+[
+  {
+    "id": "doc-1",
+    "title": "Prompt Engineering Basics",
+    "text": "Prompt engineering works best when instructions are explicit, constraints are clear, and output format is specified. Iterative testing and prompt refinement improve reliability."
+  },
+  {
+    "id": "doc-2",
+    "title": "Evaluation Strategy",
+    "text": "A practical evaluation setup combines small handcrafted test cases with representative real queries. Track correctness, faithfulness, and latency over time."
+  },
+  {
+    "id": "doc-3",
+    "title": "RAG System Design",
+    "text": "Retrieval augmented generation benefits from chunking, embeddings, and ranking. Hybrid retrieval combines keyword filtering with vector similarity."
+  },
+  {
+    "id": "doc-4",
+    "title": "Context Window Management",
+    "text": "For long chats, keep only recent turns in context and summarize older turns. This preserves important facts while controlling token usage."
+  },
+  {
+    "id": "doc-5",
+    "title": "Function Calling",
+    "text": "Function calling allows an LLM to delegate deterministic tasks to tools. Validate tool inputs and transform tool outputs into natural language."
+  },
+  {
+    "id": "doc-6",
+    "title": "Guardrails",
+    "text": "Guardrails should block prompt-injection attempts, prevent system prompt disclosure, and reject restricted content categories with consistent responses."
+  }
+]
