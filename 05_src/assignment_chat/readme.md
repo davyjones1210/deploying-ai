@@ -65,3 +65,4 @@ python -m assignment_chat.app
 Quick validation: run `python -m assignment_chat.demo_checks` from `05_src` to verify all required service and guardrail paths.
 
 Ensure your environment has course dependencies installed.
+To run live chat responses, set `API_GATEWAY_KEY` in `.secrets` (course gateway pattern from the labs).

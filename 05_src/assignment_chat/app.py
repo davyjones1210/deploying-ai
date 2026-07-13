@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from langchain_core.messages import AIMessage, HumanMessage
 
 from assignment_chat.guardrails import apply_input_guardrails
-from assignment_chat.main import get_graph
+from assignment_chat.main import get_graph, model_setup_message
 
 load_dotenv(".env")
 load_dotenv(".secrets")
@@ -35,9 +35,24 @@ def assignment_chat(message: str, history: list[dict]) -> str:
     if blocked:
         return blocked
 
-    state = {"messages": _to_langchain_messages(history, message)}
-    result = GRAPH.invoke(state)
-    return result["messages"][-1].content
+    try:
+        state = {"messages": _to_langchain_messages(history, message)}
+        result = GRAPH.invoke(state)
+        return result["messages"][-1].content
+    except RuntimeError as exc:
+        text = str(exc)
+        if "API_GATEWAY_KEY" in text:
+            return text
+        raise
+    except Exception as exc:
+        text = str(exc)
+        if (
+            "invalid_api_key" in text
+            or "Incorrect API key provided" in text
+            or "x-api-key" in text
+        ):
+            return model_setup_message()
+        raise
 
 
 chat = gr.ChatInterface(
